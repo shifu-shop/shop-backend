@@ -17,7 +17,12 @@
   },
   "homepage": "https://github.com/shifu-shop/shop-backend#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
-    "mongoose": "^5.2.7"
+    "express": "^4.16.3",
+    "mongoclient": "^1.0.3",
+    "mongodb": "^3.1.1",
+    "mongoose": "^5.2.7",
+    "multer": "^1.3.1"
   }
 }

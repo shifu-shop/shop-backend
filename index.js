@@ -10,6 +10,10 @@ const {ejs} = require('ejs');
 const path = require('path');
 
 
+
+const photoRoute = express.Router();
+app.use('/photos', photoRoute);
+
 const config = require('./config/index');
 
 const dbURI = "mongodb://" +
@@ -32,7 +36,7 @@ app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
