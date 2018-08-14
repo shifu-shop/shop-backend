@@ -5,8 +5,9 @@ const app = express();
 const server = require('http').Server(app);
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const {ejs} = require('ejs');
-
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+const cors = require('cors');
 const path = require('path');
 
 
@@ -27,8 +28,21 @@ mongoose.connect(dbURI, console.log('Succes!'));
 mongoose.Promise = require('bluebird');
 mongoose.set('debug', true);
 
-app.set('views', path.join(__dirname, './views'));
-app.set('view engine', 'ejs');
+//THIS!!!
+app.use(cors({
+    origin: ['http://localhost:8080', 'http://http://80.87.197.194:8080'],
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+    credentials: true// enable set cookie
+}));
+
+//THIS!!!
+app.use(function(req, res, next) {
+    console.log("WORKING!!!");
+    res.header("Access-Control-Allow-Origin", req.headers.origin);
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next(); });
+
 
 //For public directory
 app.use(express.static(__dirname + '/public'));
@@ -40,6 +54,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
+
+app.use(cookieParser());
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true
+}))
 
 
 require('./router/router')(app);

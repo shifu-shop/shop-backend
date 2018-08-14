@@ -11,3 +11,12 @@
 - app.get('./product/:id') - получить товар по ID
 - app.post('/product') - добавить товар (поля 'title', 'category', 'description' и 'price')  )
 - app.delete('/product/:id') - удалить товар по ID
+
+##### Very new routes
+Корзина
+
+- app.get('/cart') - просмотреть корзину
+- app.post('/cart/:id') - добавить один товар в корзину по ID
+- app.put('/cart/:id') - удалить один товар из корзины по ID
+- app.delete('/cart/:id') - удалить всё количество товара из корзины по ID
+- app.delete('/cart') - очистить корзину полностью

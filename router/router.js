@@ -1,5 +1,6 @@
 const productController = require('../controllers/productController');
 const imageController = require('../controllers/imageController');
+const cartController = require('../controllers/cartController');
 
 module.exports = (app) => {
 
@@ -17,4 +18,11 @@ module.exports = (app) => {
     app.get('./product/:id', productController.getProduct);
     app.post('/product', productController.postProduct);
     app.delete('/product/:id', productController.deleteProduct);
+
+    //CRUD cart
+    app.get('/cart', cartController.getCart);
+    app.post('/cart/:id', cartController.addToCart);
+    app.put('/cart/:id', cartController.deleteOneFromCart);
+    app.delete('/cart/:id', cartController.deleteAllFromCart);
+    app.delete('/cart', cartController.eraseCart);
 };
