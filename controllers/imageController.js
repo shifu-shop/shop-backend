@@ -6,19 +6,10 @@ const upload = multer({ storage: storage, limits: { fields: 1, fileSize: 6000000
 const mongodb = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
-let db;
+
 const config = require('../config/index');
-
 const Product = require('../models/products.model');
-
-/**
- * NodeJS Module dependencies.
- */
 const { Readable } = require('stream');
-
-/**
- * Create Express server && Routes configuration.
- */
 
 
 
@@ -32,6 +23,8 @@ const dbURI = "mongodb://" +
     config.db.host + ":" +
     config.db.port + "/" +
     config.db.name;
+
+let db;
 
 MongoClient.connect(dbURI, (err, database) => {
     if (err) {

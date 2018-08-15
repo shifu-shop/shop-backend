@@ -10,7 +10,7 @@ module.exports = (app) => {
     app.get('/image/:imageID', imageController.getImage);
     app.post('/image', imageController.postImage);
     app.delete('/image/:imageID', imageController.deleteImage);
-    app.post('/productwithimage', imageController.postProductWithImage);
+    // app.post('/productwithimage', imageController.postProductWithImage);
 
     // app.post('/productwithimage', productController.postProduct, productController.postImage);
 
