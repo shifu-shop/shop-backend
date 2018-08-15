@@ -1,6 +1,6 @@
 'use strict';
 
-var init = function () {
+let init = function () {
 
 	if(process.env.NODE_ENV === 'production') {
 		return {
@@ -17,6 +17,6 @@ var init = function () {
 	else {
 		return require('./config.json');
 	}
-}
+};
 
 module.exports = init();

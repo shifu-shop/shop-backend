@@ -1,6 +1,7 @@
 const productController = require('../controllers/productController');
 const imageController = require('../controllers/imageController');
 const cartController = require('../controllers/cartController');
+const orderController = require('../controllers/orderController');
 
 module.exports = (app) => {
 
@@ -9,13 +10,13 @@ module.exports = (app) => {
     app.get('/image/:imageID', imageController.getImage);
     app.post('/image', imageController.postImage);
     app.delete('/image/:imageID', imageController.deleteImage);
-    // app.post('/productwithimage', imageController.postProductWithImage);
+    app.post('/productwithimage', imageController.postProductWithImage);
 
     // app.post('/productwithimage', productController.postProduct, productController.postImage);
 
     //CRUD product
     app.get('/getallproducts', productController.getAllProducts);
-    app.get('./product/:id', productController.getProduct);
+    app.get('/product/:id', productController.getProduct);
     app.post('/product', productController.postProduct);
     app.delete('/product/:id', productController.deleteProduct);
 
@@ -25,4 +26,10 @@ module.exports = (app) => {
     app.put('/cart/:id', cartController.deleteOneFromCart);
     app.delete('/cart/:id', cartController.deleteAllFromCart);
     app.delete('/cart', cartController.eraseCart);
+
+    //CRUD order
+    app.post('/order', orderController.create);
+    app.get('/order', orderController.getAll);
+    app.get('/order/:id', orderController.getOne);
+    app.delete('/order/:id', orderController.deleteOne);
 };

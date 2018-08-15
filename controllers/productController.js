@@ -29,7 +29,8 @@ const { Readable } = require('stream');
 
 
 let db;
-
+// const db = require('../database/index');
+// db = database.db('shop');
 const dbURI = "mongodb://" +
     encodeURIComponent(config.db.username) + ":" +
     encodeURIComponent(config.db.password) + "@" +
@@ -90,6 +91,7 @@ exports.deleteProduct = (req, res) => {
 // };
 
 exports.getAllProducts = (req, res) => {
+    db.mo
     db.collection('productmodels').find().toArray((err, products) => {
         if (err) throw err;
         res.send(products);
