@@ -1,4 +1,8 @@
 const Order = require('../models/order.model');
+const config = require('../config/config');
+
+var mailgun = require('mailgun-js')(config.mailgun);
+
 
 exports.create = (req, res) => {
     let newOrder = new Order;
@@ -9,6 +13,19 @@ exports.create = (req, res) => {
     newOrder.save((err) => {
         if (err) throw err;
         res.sendStatus(200);
+
+        var data = {
+            from: 'Excited User <me@samples.mailgun.org>',
+            to: newOrder.email,
+            subject: 'Hello',
+            text: 'Testing some Mailgun awesomeness!'
+        };
+        mailgun.messages().send(data, function (error, body) {
+            if (err) throw err;
+            console.log(data);
+            console.log("Its OK");
+            console.log(body);
+        });
     })
 };
 
@@ -33,4 +50,4 @@ exports.deleteOne = (req, res) => {
         if(err) throw err;
         res.sendStatus(200);
     })
-}
+};
