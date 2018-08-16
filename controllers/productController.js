@@ -1,4 +1,5 @@
 const Product = require('../models/products.model');
+const url = require('url');
 
 exports.getProduct = (req, res) => {
     Product.findOne({_id: req.params.id}, (err, result) => {
@@ -31,9 +32,28 @@ exports.deleteProduct = (req, res) => {
 
 
 exports.getAllProducts = (req, res) => {
-    Product.find((err, products) => {
+    let limit = 0;
+    let offset = 0;
+    let urlVal = url.parse(req.url, true);
+
+    if (urlVal.query.value) {
+        limit = Number(urlVal.query.value);
+    }
+
+    if (urlVal.query.offset) {
+        offset = Number(urlVal.query.offset)
+    }
+    Product.find().skip(offset).limit(limit).exec((err, products) => {
+    // Product.find((err, products) => {
         if (err) throw err;
         res.send(products);
     })
+};
+
+exports.getCount = (req, res) => {
+  Product.find().exec((err, products) => {
+      if (err) throw err;
+      res.send(String(products.length));
+  })
 };
 

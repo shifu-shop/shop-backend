@@ -19,6 +19,7 @@ module.exports = (app) => {
     app.get('/product/:id', productController.getProduct);
     app.post('/product', productController.postProduct);
     app.delete('/product/:id', productController.deleteProduct);
+    app.get('/getcount', productController.getCount);
 
     //CRUD cart
     app.get('/cart', cartController.getCart);
@@ -32,4 +33,5 @@ module.exports = (app) => {
     app.get('/order', orderController.getAll);
     app.get('/order/:id', orderController.getOne);
     app.delete('/order/:id', orderController.deleteOne);
+
 };

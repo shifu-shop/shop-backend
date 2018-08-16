@@ -22,9 +22,13 @@
 - app.delete('/cart/:id') - удалить всё количество товара из корзины по ID
 - app.delete('/cart') - очистить корзину полностью
 
-##### New routes
+Заказы
 
 - app.post('/order') - создать заказ (поля 'name', 'email')
 - app.get('/order') - получить все заказы
 - app.get('/order/:id') - получить заказ по ID
 - app.delete('/order/:id') - удалить заказ по ID
+
+##### New routes
+- app.get('/getallproducts') - теперь принимает значения ?value=10&offset=10 (value - количестве товаров в выдаче, по умолчанию 0; offset - отступ в выдаче товаров, по умолчанию 0)
+- app.get('/getcount') - количество товаров в категории
