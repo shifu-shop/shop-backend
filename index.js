@@ -9,6 +9,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
+var MongoStore = require('connect-mongo')(session);
 
 
 
@@ -57,9 +58,11 @@ app.use(bodyParser.json());
 
 app.use(cookieParser());
 app.use(session({
-    secret: 'secret',
+    secret: 'mysupersecret',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 180 * 60 * 1000 }
 }));
 
 require('./router/router')(app);
