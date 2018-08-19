@@ -7,15 +7,16 @@ exports.addToCart = (req, res) => {
         if (err) throw err;
         cart.add(product, product._id);
         req.session.cart = cart;
+        console.log(req.session);
         res.send(cart);
     })
 };
 
 exports.getCart = (req, res) => {
     console.log(req.session.cart);
-    if (!req.session.cart) {
-        return res.sendStatus(400);
-    }
+    // if (!req.session.cart) {
+    //     return res.sendStatus(400);
+    // }
     let cart = new Cart(req.session.cart ? req.session.cart : {});
     console.log(cart);
     res.send(cart);

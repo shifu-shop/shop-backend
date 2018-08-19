@@ -5,12 +5,14 @@ const app = express();
 const server = require('http').Server(app);
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
-var MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo')(session);
+const morgan = require('morgan');
 
+app.use(morgan('tiny'));
 
 
 const photoRoute = express.Router();
@@ -31,7 +33,7 @@ mongoose.set('debug', true);
 
 //THIS!!!
 app.use(cors({
-    origin: ['http://localhost:8080', 'http://http://80.87.197.194:8080'],
+    origin: ['http://localhost:8080', 'http://80.87.197.194:8080'],
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
     credentials: true// enable set cookie
 }));
@@ -56,7 +58,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.use(cookieParser());
+app.use(cookieParser('mysupersecret'));
 app.use(session({
     secret: 'mysupersecret',
     resave: false,
