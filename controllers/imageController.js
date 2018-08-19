@@ -84,6 +84,19 @@ exports.getImage = (req, res) => {
 /**
  * POST photo Route
  */
+
+exports.postImage64 = (req, res) => {
+    let productId = req.body.productId;
+    console.log(productId);
+    let newId = new mongodb.ObjectID(productId);
+    Product.updateOne({_id: productId}, {$set: {img64: req.body.image}}, (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        res.sendStatus(200);
+    });
+};
+
+
 exports.postImage = (req, res) => {
     upload.single('image')(req, res, (err) => {
         console.log(req.file);

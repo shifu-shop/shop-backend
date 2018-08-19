@@ -19,7 +19,23 @@ exports.postProduct = (req, res) => {
     newItem.save((err) => {
         if (err) throw err;
 
-        res.status(200).json('Success!')
+        res.status(200).json(newItem._id);
+    })
+};
+
+exports.postProduct64 = (req, res) => {
+    let newItem = new Product;
+
+    newItem.title = req.body.title;
+    newItem.category = req.body.category;
+    newItem.description = req.body.description;
+    newItem.price = req.body.price;
+    newItem.img64 = req.body.image;
+
+    newItem.save((err) => {
+        if (err) throw err;
+
+        res.status(200).json(newItem._id);
     })
 };
 

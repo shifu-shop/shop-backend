@@ -38,4 +38,7 @@ module.exports = (app) => {
     //Other routes
     app.post('/search', otherController.search);
 
+    app.post('/product64', productController.postProduct64);
+    app.post('/image64', imageController.postImage64);
+
 };
