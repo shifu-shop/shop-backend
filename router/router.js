@@ -2,6 +2,7 @@ const productController = require('../controllers/productController');
 const imageController = require('../controllers/imageController');
 const cartController = require('../controllers/cartController');
 const orderController = require('../controllers/orderController');
+const otherController = require('../controllers/otherController');
 
 module.exports = (app) => {
 
@@ -33,5 +34,8 @@ module.exports = (app) => {
     app.get('/order', orderController.getAll);
     app.get('/order/:id', orderController.getOne);
     app.delete('/order/:id', orderController.deleteOne);
+
+    //Other routes
+    app.post('/search', otherController.search);
 
 };

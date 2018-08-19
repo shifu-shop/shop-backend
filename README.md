@@ -2,7 +2,7 @@
 
 Изображения
 
-- app.get('/getallimages') - получить все изображения
+- app.get('/getallimages') - получить все изображения, принимает значения ?value=10&offset=10 (value - количестве товаров в выдаче, по умолчанию 0; offset - отступ в выдаче товаров, по умолчанию 0)
 - app.get('/image/:imageID') - получить рендер конкретного изображения
 - app.post('/image') - отправить изображение (поле 'image' с файлом, поле 'productId' с Id товара, к которому привязать фотографию)
 - app.delete('/image/:imageID') - удалить сообщение по ID
@@ -13,6 +13,7 @@
 - app.get('./product/:id') - получить товар по ID
 - app.post('/product') - добавить товар (поля 'title', 'category', 'description' и 'price')  )
 - app.delete('/product/:id') - удалить товар по ID
+- app.get('/getcount') - количество товаров в категории
 
 Корзина
 
@@ -30,5 +31,4 @@
 - app.delete('/order/:id') - удалить заказ по ID
 
 ##### New routes
-- app.get('/getallproducts') - теперь принимает значения ?value=10&offset=10 (value - количестве товаров в выдаче, по умолчанию 0; offset - отступ в выдаче товаров, по умолчанию 0)
-- app.get('/getcount') - количество товаров в категории
+- app.post('/search') - простой поиск по названию (поле 'str')
